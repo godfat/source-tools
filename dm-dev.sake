@@ -1,0 +1,151 @@
+namespace :dm do
+  # Usage: sake dm:clone
+  desc 'Clone a copy of the DataMapper repository and dependencies'
+  task :clone do
+    if File.directory?('dm')
+      puts './dm already exists!'
+      exit
+    end
+    require 'fileutils'
+    mkdir 'dm'
+    cd 'dm'
+    %w[ do dm-core dm-more ].each do |r|
+      sh "git clone git://github.com/sam/#{r}.git"
+    end
+  end
+
+  # Usage: sake dm:update
+  desc 'Update your local DataMapper.  Run from inside the top-level dm directory.'
+  task :update do
+    repos = %w[ do dm-core dm-more ]
+
+    repos.each do |r|
+      unless File.directory?(r)
+        puts "#{r} missing ... did you use dm:create to set this up?"
+        exit
+      end
+    end
+
+    repos.each do |r|
+      puts "Updating #{r}"
+      cd r
+      sh 'git fetch'
+      sh 'git rebase origin/master'
+      cd '..'
+    end
+  end
+
+  namespace :gems do
+    # Usage: sake dm:gems:wipe
+    desc 'Uninstall all RubyGems related to DataMapper'
+    task :wipe do
+      sudo = RUBY_PLATFORM =~ /win32|cygwin/ ? '' : 'sudo'
+      %w[ dm-core merb_datamapper do_sqlite3 do_mysql do_postgres data_objects ].each do |gem|
+        sh "#{sudo} gem uninstall #{gem} --all --ignore-dependencies --executables; true"
+      end
+    end
+
+    # Usage: sake dm:gems:refresh
+    desc 'Pull fresh copies of DataMapper and refresh all the gems'
+    task :refresh => %w[ dm:gems:wipe dm:update dm:install ]
+  end
+
+  # Usage: sake dm:install
+  desc 'Install dm-core, dm-more and do'
+  task :install => %w[ dm:install:do dm:install:core dm:install:more ]
+
+  namespace :install do
+    # Usage: sake dm:install:core
+    desc 'Install dm-core'
+    task :core do
+      cd 'dm-core'
+      sh 'rake install'
+      cd '..'
+    end
+
+    # Usage: sake dm:install:more
+    desc 'Install dm-more'
+    task :more => %w[ dm:install:more:merb_datamapper ]
+
+    # TODO: make rake install task in dm-more
+    namespace :more do
+      # Usage: sake dm:install:more:merb_datamapper
+      desc 'Install merb_datamapper'
+      task :merb_datamapper do
+        cd 'dm-more/merb_datamapper'
+        sh 'rake install; true'
+        cd '../..'
+      end
+    end
+
+    # Usage: sake dm:install:do
+    desc 'Install do drivers'
+    task :do => %w[ dm:install:do:data_objects dm:install:do:postgres dm:install:do:mysql dm:install:do:sqlite3 ]
+
+    # TODO: make rake install task in do
+    namespace :do do
+      # Usage: sake dm:install:do:data_objects
+      desc 'Install data_objects'
+      task :data_objects do
+        cd 'do/data_objects'
+        sh 'rake install; true'
+        cd '../..'
+      end
+
+      # Usage: sake dm:install:do:postgres
+      desc 'Install do_postgres'
+      task :postgres do
+        cd 'do/do_postgres'
+        sh 'rake install; true'
+        cd '../..'
+      end
+
+      # Usage: sake dm:install:do:mysql
+      desc 'Install do_mysql'
+      task :mysql do
+        cd 'do/do_mysql'
+        sh 'rake install; true'
+        cd '../..'
+      end
+
+      # Usage: sake dm:install:do:sqlite3
+      desc 'Install do_sqlite3'
+      task :sqlite3 do
+        cd 'do/do_sqlite3'
+        sh 'rake install; true'
+        cd '../..'
+      end
+    end
+  end
+
+  namespace :sake do
+    # Usage: sake dm:sake:refresh
+    desc 'Remove and reinstall DataMapper sake recipes'
+    task :refresh do
+      tasks = %w[
+        clone
+        gems:refresh
+        gems:wipe
+        install
+        install:core
+        install:do
+        install:do:data_objects
+        install:do:mysql
+        install:do:postgres
+        install:do:sqlite3
+        install:more
+        install:more:merb_datamapper
+        update
+      ]
+
+      # TODO: add sake:refresh to task list once redirect works
+
+      tasks.each do |task|
+        sh "sake -u dm:#{task}"
+      end
+
+      # TODO: uncomment when redirect works
+      #sh 'sake -i http://datamapper.org/dm-dev.sake'
+    end
+  end
+end
