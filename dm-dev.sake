@@ -136,16 +136,14 @@ namespace :dm do
         install:more
         install:more:merb_datamapper
         update
+        sake:refresh
       ]
-
-      # TODO: add sake:refresh to task list once redirect works
 
       tasks.each do |task|
         sh "sake -u dm:#{task}"
       end
 
-      # TODO: uncomment when redirect works
-      #sh 'sake -i http://datamapper.org/dm-dev.sake'
+      sh 'sake -i http://datamapper.org/dm-dev.sake'
     end
   end
 end
