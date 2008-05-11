@@ -59,16 +59,32 @@ namespace :dm do
     desc 'Install dm-core'
     task :core do
       cd 'dm-core'
-      sh 'rake install'
+      sh 'rake install; true'
       cd '..'
     end
 
     # Usage: sake dm:install:more
     desc 'Install dm-more'
-    task :more => %w[ dm:install:more:merb_datamapper ]
+    task :more => %w[ dm:install:more:timestamps dm:install:more:validations dm:install:more:merb_datamapper ]
 
     # TODO: make rake install task in dm-more
     namespace :more do
+      # Usage: sake dm:install:more:timestamps
+      desc 'Install dm-timestamps'
+      task :timestamps do
+        cd 'dm-more/dm-timestamps'
+        sh 'rake install; true'
+        cd '../..'
+      end
+
+      # Usage: sake dm:install:more:validations
+      desc 'Install dm-validations'
+      task :validations do
+        cd 'dm-more/dm-validations'
+        sh 'rake install; true'
+        cd '../..'
+      end
+
       # Usage: sake dm:install:more:merb_datamapper
       desc 'Install merb_datamapper'
       task :merb_datamapper do
