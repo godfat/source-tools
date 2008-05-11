@@ -150,6 +150,8 @@ namespace :dm do
         install:do:postgres
         install:do:sqlite3
         install:more
+        install:more:timestamps
+        install:more:validations
         install:more:merb_datamapper
         update
         sake:refresh
