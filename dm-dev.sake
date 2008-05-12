@@ -139,29 +139,57 @@ namespace :dm do
     desc 'Remove and reinstall DataMapper sake recipes'
     task :refresh do
       tasks = %w[
-        clone
-        gems:refresh
-        gems:wipe
-        install
-        install:core
-        install:do
-        install:do:data_objects
-        install:do:mysql
-        install:do:postgres
-        install:do:sqlite3
-        install:more
-        install:more:timestamps
-        install:more:validations
-        install:more:merb_datamapper
-        update
-        sake:refresh
+        dm:clone
+        dm:gems:refresh
+        dm:gems:wipe
+        dm:install
+        dm:install:core
+        dm:install:do
+        dm:install:do:data_objects
+        dm:install:do:mysql
+        dm:install:do:postgres
+        dm:install:do:sqlite3
+        dm:install:more
+        dm:install:more:timestamps
+        dm:install:more:validations
+        dm:install:more:merb_datamapper
+        dm:update
+        dm:sake:refresh
+        strip
       ]
 
-      tasks.each do |task|
-        sh "sake -u dm:#{task}"
-      end
-
+      sh "sake -u #{tasks * ' '}"
       sh 'sake -i http://datamapper.org/dm-dev.sake'
     end
+  end
+end
+
+desc 'Strip trailing whitespace from source files'
+task :strip do
+  require 'pathname'
+  require 'zlib'
+
+  # files and extensions to process
+  files      = %w[ capfile CHANGELOG MIT-LICENSE README README_FOR_APP RUNNING_UNIT_TESTS Rakefile TODO USAGE .autotest .gitignore ].freeze
+  extensions = %w[ builder cgi conf css deploy erb example fcgi haml htc htm html js key opts php rake ratom rb rcsv rdf rhtml rjs rpdf rxml sake sass sh sql txt vcf xml yml ].freeze
+
+  Pathname.getwd.find do |path|
+    # skip unreadable, unwritable, .git and .svn directories
+    Find.prune if (path.directory? && (!path.readable? || !path.writable?)) || %w[ .git .svn ].include?(path.basename.to_s)
+
+    # skip non-files, zero-sized files, files not matching specific names, or files without the matching extensions
+    next unless path.file? && path.size? && (files.include?(path.basename.to_s) || extensions.include?(path.extname[1..-1]))
+
+    # replace leading whitespace (including tabs) with spaces
+    # replace trailing whitespace with a newline
+    document = path.open('r') do |f|
+      f.collect { |line| line.gsub(/\G\s/, ' ').rstrip + "\n" }.join.rstrip
+    end + "\n"
+
+    # skip the file if it was not modified
+    next if Zlib.crc32(document) == Zlib.crc32(path.read)
+
+    puts "Stripping whitepsace from #{path}"
+    path.open('w') { |f| f.write document }
   end
 end
