@@ -65,33 +65,10 @@ namespace :dm do
 
     # Usage: sake dm:install:more
     desc 'Install dm-more'
-    task :more => %w[ dm:install:more:timestamps dm:install:more:validations dm:install:more:merb_datamapper ]
-
-    # TODO: make rake install task in dm-more
-    namespace :more do
-      # Usage: sake dm:install:more:timestamps
-      desc 'Install dm-timestamps'
-      task :timestamps do
-        cd 'dm-more/dm-timestamps'
-        sh 'rake install; true'
-        cd '../..'
-      end
-
-      # Usage: sake dm:install:more:validations
-      desc 'Install dm-validations'
-      task :validations do
-        cd 'dm-more/dm-validations'
-        sh 'rake install; true'
-        cd '../..'
-      end
-
-      # Usage: sake dm:install:more:merb_datamapper
-      desc 'Install merb_datamapper'
-      task :merb_datamapper do
-        cd 'dm-more/merb_datamapper'
-        sh 'rake install; true'
-        cd '../..'
-      end
+    task :more do
+      cd 'dm-more'
+      sh 'rake install; true'
+      cd '..'
     end
 
     # Usage: sake dm:install:do
@@ -138,25 +115,12 @@ namespace :dm do
     # Usage: sake dm:sake:refresh
     desc 'Remove and reinstall DataMapper sake recipes'
     task :refresh do
-      tasks = %w[
-        dm:clone
-        dm:gems:refresh
-        dm:gems:wipe
-        dm:install
-        dm:install:core
-        dm:install:do
-        dm:install:do:data_objects
-        dm:install:do:mysql
-        dm:install:do:postgres
-        dm:install:do:sqlite3
-        dm:install:more
-        dm:install:more:timestamps
-        dm:install:more:validations
-        dm:install:more:merb_datamapper
-        dm:update
-        dm:sake:refresh
-        strip
-      ]
+      tasks = []
+
+      `sake -T`.each do |line|
+        next unless match = line.match(/\Asake\s(dm:.+?|strip)\s/)
+        tasks << match.captures.first
+      end
 
       sh "sake -u #{tasks * ' '}"
       sh 'sake -i http://datamapper.org/dm-dev.sake'
