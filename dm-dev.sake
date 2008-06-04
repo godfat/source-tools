@@ -55,9 +55,17 @@ namespace :dm do
 
   # Usage: sake dm:install
   desc 'Install dm-core, dm-more, dm-dev and do'
-  task :install => %w[ dm:install:do dm:install:core dm:install:dev dm:install:more ]
+  task :install => %w[ dm:install:extlib dm:install:do dm:install:core dm:install:dev dm:install:more ]
 
   namespace :install do
+    # Usage: sake extlib
+    desc 'Install extlib'
+    task :extlib do
+      cd 'extlib'
+      sh 'rake install; true'
+      cd '..'
+    end
+    
     # Usage: sake dm:install:core
     desc 'Install dm-core'
     task :core do
@@ -84,7 +92,7 @@ namespace :dm do
 
     # Usage: sake dm:install:do
     desc 'Install do drivers'
-    task :do => %w[ dm:install:do:data_objects dm:install:do:postgres dm:install:do:mysql dm:install:do:sqlite3 ]
+    task :do => %w[ dm:install:extlib dm:install:do:data_objects dm:install:do:postgres dm:install:do:mysql dm:install:do:sqlite3 ]
 
     # TODO: make rake install task in do
     namespace :do do
