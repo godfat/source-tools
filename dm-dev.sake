@@ -42,7 +42,7 @@ namespace :dm do
     # Usage: sake dm:gems:wipe
     desc 'Uninstall all RubyGems related to DataMapper'
     task :wipe do
-      sudo = RUBY_PLATFORM =~ /win32|cygwin/ ? '' : 'sudo'
+      sudo = ENV['SUDOLESS'] == 'true' || RUBY_PLATFORM =~ /win32|cygwin/ ? '' : 'sudo'
       %w[ dm-core merb_datamapper dm-validations dm-timestamps do_sqlite3 do_postgres do_mysql data_objects ].each do |gem|
         sh "#{sudo} gem uninstall #{gem} --all --ignore-dependencies --executables; true"
       end
