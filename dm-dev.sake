@@ -145,6 +145,13 @@ namespace :dm do
       sh 'sake -i http://datamapper.org/dm-dev.sake'
     end
   end
+
+  # Usage: sake dm:update:version old=0.9.1 new=0.9.2
+  desc 'Update the version number'
+  task 'update:version' do
+    versions = ENV.values_at('old', 'new').map { |v| Regexp.escape(v) }
+    sh %q[find * -type f -exec perl -pi -e 's/\\b%s\\b/%s/g' {} \;] % versions
+  end
 end
 
 desc 'Strip trailing whitespace from source files'
