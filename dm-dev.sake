@@ -43,7 +43,7 @@ namespace :dm do
     desc 'Uninstall all RubyGems related to DataMapper'
     task :wipe do
       sudo = ENV['SUDOLESS'] == 'true' || RUBY_PLATFORM =~ /win32|cygwin/ ? '' : 'sudo'
-      %w[ dm-core dm-more do_sqlite3 do_postgres do_mysql data_objects ].each do |gem|
+      %w[ dm-core dm-more do_sqlite3 do_postgres do_mysql data_objects extlib ].each do |gem|
         if %w[ dm-more ].include?(gem)
           cd gem
           sh 'rake uninstall'
