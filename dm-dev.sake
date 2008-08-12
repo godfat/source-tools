@@ -153,10 +153,10 @@ namespace :dm do
   end
 
   # Usage: sake dm:update:version old=0.9.1 new=0.9.3
-  desc 'Update the version number'
+  desc 'Update the version number for dm-core, dm-more and do (not extlib)'
   task 'update:version' do
     versions = ENV.values_at('old', 'new').map { |v| Regexp.escape(v) }
-    sh %q[find dm-core dm-more extlib/* do/* -type f -exec perl -pi -e 's/\\b%s\\b/%s/g' {} \;] % versions
+    sh %q[find dm-core dm-more do/* -type f -exec perl -pi -e 's/\\b%s\\b/%s/g' {} \;] % versions
   end
 end
 
