@@ -60,8 +60,8 @@ namespace :dm do
   end
 
   # Usage: sake dm:install
-  desc 'Install extlib, do, dm-core, dm-dev and dm-more'
-  task :install => %w[ dm:install:extlib dm:install:do dm:install:core dm:install:dev dm:install:more ]
+  desc 'Install extlib, do, dm-core and dm-more'
+  task :install => %w[ dm:install:extlib dm:install:do dm:install:core dm:install:more ]
 
   namespace :install do
     # Usage: sake extlib
@@ -84,14 +84,6 @@ namespace :dm do
     desc 'Install dm-more'
     task :more do
       cd 'dm-more'
-      sh 'rake install; true'
-      cd '..'
-    end
-
-    # Usage: sake dm:install:dev
-    desc 'Install dm-dev'
-    task :dev do
-      cd 'dm-dev'
       sh 'rake install; true'
       cd '..'
     end
