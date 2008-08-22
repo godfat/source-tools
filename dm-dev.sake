@@ -56,7 +56,7 @@ namespace :dm do
 
     # Usage: sake dm:gems:refresh
     desc 'Pull fresh copies of DataMapper and refresh all the gems'
-    task :refresh => %w[ dm:sake:refresh dm:gems:wipe dm:update dm:install ]
+    task :refresh => %w[ dm:gems:wipe dm:update dm:install ]
   end
 
   # Usage: sake dm:install
