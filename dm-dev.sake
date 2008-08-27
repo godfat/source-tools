@@ -44,6 +44,19 @@ namespace :dm do
     desc 'Uninstall all RubyGems related to DataMapper'
     task :wipe do
       sudo = ENV['SUDOLESS'] == 'true' || RUBY_PLATFORM =~ /win32|cygwin/ ? '' : 'sudo'
+    require 'pathname'
+
+    base_path = Pathname.getwd
+
+    unless base_path.basename.to_s == 'dm'
+      base_path += 'dm'
+      if base_path.directory?
+        cd base_path
+      else
+        warn "This task must be run from the dm directory, or its parent"
+        exit 1
+      end
+    end
       %w[ dm-core dm-more do_sqlite3 do_postgres do_mysql data_objects extlib ].each do |gem|
         if %w[ dm-more ].include?(gem)
           cd gem
