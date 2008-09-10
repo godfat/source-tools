@@ -77,6 +77,38 @@ namespace :dm do
   desc 'Install extlib, do, dm-core and dm-more'
   task :install => %w[ dm:install:extlib dm:install:do dm:install:core dm:install:more ]
 
+  # Usage: sake dm:refresh
+  desc 'Pull fresh copies of DataMapper and repackage all the gems. (Use dm:gems:refresh to reinstall them as well)'
+  task :refresh => %w[ dm:update dm:repackage:extlib dm:repackage:do dm:repackage:core dm:repackage:more ]
+
+  namespace :repackage do
+    %w[extlib dm-core dm-more].each do |proj|
+      desc "Repackage #{proj} gem"
+      task proj do
+        cd proj
+        sh 'rake repackage; true'
+        cd '..'
+      end
+    end
+
+    # Usage: sake dm:install:do
+    desc 'Install do drivers'
+    task :do => %w[ dm:repackage:do:data_objects dm:repackage:do:postgres dm:repackage:do:mysql dm:repackage:do:sqlite3 ]
+
+    # TODO: make rake install task in do
+    namespace :do do
+      %w[ data_objects do_sqlite3 do_mysql do_postgres ].each do |proj|
+        desc "Repackage #{proj} gem"
+        task proj do
+          cd "do/#{proj}"
+          sh 'rake install; true'
+          cd '../..'
+        end
+      end
+    end
+
+  end
+
   namespace :install do
     # Usage: sake extlib
     desc 'Install extlib'
