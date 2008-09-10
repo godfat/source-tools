@@ -82,29 +82,63 @@ namespace :dm do
   task :refresh => %w[ dm:update dm:repackage:extlib dm:repackage:do dm:repackage:core dm:repackage:more ]
 
   namespace :repackage do
-    %w[extlib dm-core dm-more].each do |proj|
-      desc "Repackage #{proj} gem"
-      task proj do
-        cd proj
-        sh 'rake repackage; true'
-        cd '..'
-      end
+
+    desc "Repackage extlib gem"
+    task :extlib do
+      cd 'extlib'
+      sh 'rake repackage; true'
+      cd '..'
     end
 
-    # Usage: sake dm:install:do
-    desc 'Install do drivers'
+    desc "Repackage dm-core gem"
+    task :core do
+      cd 'dm-core'
+      sh 'rake repackage; true'
+      cd '..'
+    end
+
+    desc "Repackage dm-more gem"
+    task :more do
+      cd 'dm-more'
+      sh 'rake build_gems; true'
+      cd '..'
+    end
+
+    # Usage: sake dm:repackage:do
+    desc 'Repackage do drivers'
     task :do => %w[ dm:repackage:do:data_objects dm:repackage:do:postgres dm:repackage:do:mysql dm:repackage:do:sqlite3 ]
 
     # TODO: make rake install task in do
     namespace :do do
-      %w[ data_objects do_sqlite3 do_mysql do_postgres ].each do |proj|
-        desc "Repackage #{proj} gem"
-        task proj do
-          cd "do/#{proj}"
-          sh 'rake install; true'
+
+        desc "Repackage data_objects gem"
+        task :data_objects do
+          cd 'do/data_objects'
+          sh 'rake repackage; true'
           cd '../..'
         end
-      end
+
+        desc "Repackage do_sqlite3 gem"
+        task :sqlite3 do
+          cd 'do/do_sqlite3'
+          sh 'rake repackage; true'
+          cd '../..'
+        end
+
+        desc "Repackage do_mysql gem"
+        task :mysql do
+          cd 'do/do_mysql'
+          sh 'rake repackage; true'
+          cd '../..'
+        end
+
+        desc "Repackage do_postgres gem"
+        task :postgres do
+          cd 'do/do_postgres'
+          sh 'rake repackage; true'
+          cd '../..'
+        end
+
     end
 
   end
