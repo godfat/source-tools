@@ -6,6 +6,7 @@ namespace :st do
   task :strip, :spaces do |t, args|
     require 'pathname'
     require 'zlib'
+    require 'source-tools'
 
     # files and extensions to process
     files = %w[ CHANGELOG HISTORY MIT-LICENSE LICENSE README README_FOR_APP
@@ -34,9 +35,7 @@ namespace :st do
       next unless path.file? && path.size? && match
 
       # strat striping unnecessary whitespaces
-      result = path.open('r'){ |f|
-        f.map{ |line| line.gsub("\t", spaces).rstrip }.join("\n")
-      } + "\n"
+      result = path.open('r'){ |f| SourceTools.strip(f, spaces) }
 
       # skip the file if it was not modified
       next if Zlib.crc32(result) == Zlib.crc32(path.read)
