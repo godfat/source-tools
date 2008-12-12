@@ -1,0 +1,6 @@
+
+path = "#{File.dirname(__FILE__)}/../lib"
+rake = "#{path}/source-tools/bin.rake"
+opts = ARGV.join(' ')
+
+puts `rake -I #{path} -f #{rake} #{opts}`
