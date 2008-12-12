@@ -3,7 +3,13 @@ module SourceTools
   module_function
 
   def strip file, spaces = '  '
-    file.map{ |line| line.gsub("\t", spaces).rstrip }.join("\n") + "\n"
+    strip_utf8_bom(
+      file.map{ |line| line.gsub("\t", spaces).rstrip }.join("\n") + "\n"
+    )
+  end
+
+  def strip_utf8_bom str
+    str[0..2] == "\xEF\xBB\xBF" ? str[3..-1] : str
   end
 
   def each_source_path
