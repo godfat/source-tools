@@ -1,0 +1,14 @@
+CHANGES
+Manifest
+README
+Rakefile
+bin/source-tools
+lib/source-tools.rb
+lib/source-tools/bin.rake
+lib/source-tools/default.rake
+lib/source-tools/tasks.rb
+lib/source-tools/tasks/rakefile.rake
+lib/source-tools/tasks/strip.rake
+lib/source-tools/templates/Rakefile.erb
+lib/source-tools/version.rb
+source-tools.gemspec
