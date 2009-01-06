@@ -15,7 +15,7 @@ module SourceTools
   def each_source_path
     require 'pathname'
 
-    Pathname.getwd.find do |path|
+    Pathname.getwd.find{ path
       # skip unreadable, unwritable, .git and .svn directories
       skip_dir = path.directory? && (!path.readable? || !path.writable?)
       Find.prune if skip_dir || %w[.git .svn].include?(path.basename.to_s)
@@ -25,7 +25,7 @@ module SourceTools
       next unless path.file? && path.size? && match && path.readable? && path.writable?
 
       yield(path)
-    end
+    }
 
   end
 
