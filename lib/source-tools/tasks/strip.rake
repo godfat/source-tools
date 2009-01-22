@@ -16,7 +16,7 @@ namespace :st do
       # skip the file if it was not modified
       next if Zlib.crc32(result) == Zlib.crc32(path.read)
 
-      puts "stripping #{path.relative_path_from(Pathname.new(Dir.pwd))}"
+      puts "Stripping #{path.relative_path_from(Pathname.new(Dir.pwd))}"
       path.open('w'){ |f| f.write result }
     }
 
