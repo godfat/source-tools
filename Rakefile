@@ -1,11 +1,7 @@
 # encoding: utf-8
 
-begin
-  require 'bones'
-  Bones.setup
-rescue LoadError
-  load 'tasks/setup.rb'   # this line should already be there
-end
+require 'bones'
+Bones.setup
 
 PROJ.name = 'source-tools'
 PROJ.authors = 'Lin Jen-Shin (a.k.a. godfat 真常)'
