@@ -23,9 +23,8 @@ PROJ.description = PROJ.summary = paragraphs_of('README', 'description').join("\
 PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
 PROJ.version = File.read("lib/#{PROJ.name}/version.rb").gsub(/.*VERSION = '(.*)'.*/m, '\1')
 
-PROJ.manifest_file = 'Manifest'
-PROJ.exclude += ['^Manifest$', '^tmp', 'tmp$', '^pkg',
-                 '^\.gitignore$', '^ann-', '\.sqlite3$', '\.db$']
+PROJ.exclude += ['^tmp', 'tmp$', '^pkg', '^\.gitignore$',
+                 '^ann-', '\.sqlite3$', '\.db$']
 
 PROJ.rdoc.remote_dir = PROJ.name
 
