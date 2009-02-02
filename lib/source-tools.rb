@@ -18,7 +18,7 @@ module SourceTools
     args.each{ |arg|
       if task_args[arg].nil?
         puts 'please fill your arguments like:'
-        puts "  > source-tools st:#{File.basename(path)}[#{args.join(', ').upcase}]"
+        puts "  > source-tools st:t:#{File.basename(path)}[#{args.join(', ').upcase}]"
         exit(1)
       end
     }
