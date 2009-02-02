@@ -12,6 +12,43 @@ module SourceTools
     str[0..2] == "\xEF\xBB\xBF" ? str[3..-1] : str
   end
 
+  def generate path, args = [], task_args = nil, &block
+    require 'fileutils'
+
+    args.each{ |arg|
+      if task_args[arg].nil?
+        puts 'please fill your arguments like:'
+        puts "  > source-tools st:#{File.basename(path)}[#{args.join(', ').upcase}]"
+        exit(1)
+      end
+    }
+
+    if File.exist?(path)
+      puts "#{path} exists."
+      exit(1)
+    end
+
+    FileUtils.mkdir_p(File.dirname(path))
+    File.open(path, 'w'){ |file|
+      require 'erb'
+      args = task_args.to_hash
+      block.call(args) if block_given?
+
+      directory = "#{File.dirname(__FILE__)}/source-tools/templates/"
+      template  = "t#{path}.erb"
+
+      file << ERB.new(File.read(directory + template)).result(binding)
+    }
+
+    puts "#{path} generated."
+  end
+
+  def task_template path, *args, &block
+    task(*args.dup.unshift(File.basename(path))) do |t, task_args|
+      SourceTools.generate(path, args, task_args, &block)
+    end
+  end
+
   def each_source_path
     require 'pathname'
 

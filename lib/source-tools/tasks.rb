@@ -1,4 +1,4 @@
 
-%w[strip rakefile chmod].each{ |task|
-  load "source-tools/tasks/#{task}.rake"
+%w[strip template chmod].each{ |task|
+  require "source-tools/tasks/#{task}"
 }

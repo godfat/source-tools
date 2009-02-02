@@ -1,17 +1,13 @@
 # encoding: utf-8
 
-begin
-  require 'bones'
-  Bones.setup
-rescue LoadError
-  load 'tasks/setup.rb'   # this line should already be there
-end
+require 'bones'
+Bones.setup
 
-PROJ.name = '<%= project %>'
-PROJ.authors = '<%= author %>'
-PROJ.email = '<%= author %>@<%= author %>.org'
-PROJ.url = 'http://github.com/<%= author %>/<%= project %>'
-PROJ.rubyforge.name = '<%= project %>'
+PROJ.name = '<%= args[:project] %>'
+PROJ.authors = '<%= args[:author] %>'
+PROJ.email = '<%= args[:author] %>@<%= args[:author] %>.org'
+PROJ.url = 'http://github.com/<%= args[:author] %>/<%= args[:project] %>'
+PROJ.rubyforge.name = '<%= args[:project] %>'
 
 # PROJ.gem.dependencies << ['source-tools', '>=0.5.0']
 # PROJ.gem.development_dependencies << ['minitest', '>=1.3.0']
@@ -23,9 +19,8 @@ PROJ.description = PROJ.summary = paragraphs_of('README', 'description').join("\
 PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
 PROJ.version = File.read("lib/#{PROJ.name}/version.rb").gsub(/.*VERSION = '(.*)'.*/m, '\1')
 
-PROJ.manifest_file = 'Manifest'
-PROJ.exclude += ['^Manifest$', '^tmp', 'tmp$', '^pkg',
-                 '^\.gitignore$', '^ann-', '\.sqlite3$', '\.db$']
+PROJ.exclude += ['^tmp', 'tmp$', '^pkg', '^\.gitignore$',
+                 '^ann-', '\.sqlite3$', '\.db$']
 
 PROJ.rdoc.remote_dir = PROJ.name
 
