@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Lin Jen-Shin (a.k.a. godfat \347\234\237\345\270\270)"]
-  s.date = %q{2009-02-02}
+  s.date = %q{2009-02-03}
   s.default_executable = %q{source-tools}
   s.description = %q{}
   s.email = %q{godfat (XD) godfat.org}
