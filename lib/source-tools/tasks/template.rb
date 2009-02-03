@@ -8,7 +8,10 @@ namespace :st do
       args[:author] = `whoami`.chop
     }
 
-    %w[ .gitignore .gitconfig .vimrc .bashrc .gemrc .config/fish/config.fish ].each{ |path|
+    desc 'create a common .gitconfig file'
+    SourceTools.task_template('.gitconfig', :project)
+
+    %w[ .gitignore .vimrc .bashrc .gemrc .config/fish/config.fish ].each{ |path|
       desc "create a common #{File.basename(path)} file"
       SourceTools.task_template(path)
     }
