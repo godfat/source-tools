@@ -14,7 +14,13 @@ namespace :st do
     desc 'create a user gem only .gemrc file'
     SourceTools.task_template('.gemrc', :project)
 
-    %w[ .gitignore .vimrc .bashrc .config/fish/config.fish ].each{ |path|
+    desc 'create an nginx config file'
+    SourceTools.task_template('config/nginx.conf', :project)
+
+    %w[ .gitignore .vimrc .bashrc .config/fish/config.fish
+        config/mime.types
+      ].each{ |path|
+
       desc "create a common #{File.basename(path)} file"
       SourceTools.task_template(path)
     }
