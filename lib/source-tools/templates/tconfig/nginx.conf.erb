@@ -98,8 +98,7 @@ http {
         # used for X-Reproxy-URL
         # location /x-reproxy-url {
         #     internal;
-        #     set            $reproxy  $upstream_http_x_reproxy_url;
-        #     proxy_pass     $reproxy;
+        #     proxy_pass  $upstream_http_x_reproxy_url;
         #
         #     # used for mogilefs
         #     # proxy_hide_header  Content-Type;
