@@ -12,6 +12,7 @@ namespace :st do
       next unless path.writable? && !path.directory?
 
       content = path.read
+      next if content =~ /\A<!-- begin/
 
       path.open('w'){ |f|
         puts "Processing #{path}"
