@@ -15,7 +15,7 @@ by Lin Jen-Shin (a.k.a. godfat-真常[http://godfat.org])
 
 $ source-tools
 source-tools st:chmod                  # fix files(644) and directories(755) permission recursively.
-source-tools st:html_eof[glob]         # Append a html comment at the end of file (for tracking partial template on generated html)
+source-tools st:html_wrap[glob]        # Wrap html with comments at the beginning and the end of file (for tracking partial template on generated html)
 source-tools st:strip[spaces]          # Strip trailing whitespace from source files, also normalize tabs to spaces, and an newline at end of file
 source-tools st:t:.bashrc              # create a common .bashrc file
 source-tools st:t:.gemrc[project]      # create a user gem only .gemrc file

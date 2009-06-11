@@ -1,7 +1,7 @@
 
 namespace :st do
-  desc 'Append a html comment at the end of file (for tracking partial template on generated html)'
-  task :html_eof, :glob do |t, args|
+  desc 'Wrap html with comments at the beginning and the end of file (for tracking partial template on generated html)'
+  task :html_wrap, :glob do |t, args|
     if args[:glob].nil?
       puts 'Please provide a glob to indicate which files you want to append the comment'
       exit(1)
