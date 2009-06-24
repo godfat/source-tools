@@ -74,7 +74,7 @@ module SourceTools
   end
 
   def extensions
-    source_codes = %w[ rb ru rake sake php pl py js sh c cpp cxx h hpp hs ml java cs d y ]
+    source_codes = %w[ rb ru rake sake php pl py js sh c cpp cxx h hpp hs ml java cs d y as ]
     templates = %w[ haml builder erb eruby rxml rhtml rjs ratom rcsv ]
     markup = %w[ css htm html xml rdf yml yaml ]
     others = %w[ cgi fcgi conf deploy example htc key opts rpdf sql txt vcf log ]
