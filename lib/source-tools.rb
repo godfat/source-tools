@@ -82,4 +82,25 @@ module SourceTools
     (source_codes + templates + markup + others)
   end
 
+  def glob glob_str
+    if glob_str.nil?
+      puts 'Please provide a glob to indicate which files you want to append the comment'
+      exit(1)
+    end
+
+    require 'pathname'
+    Pathname.glob(glob_str).each{ |path|
+      next unless path.writable? && !path.directory?
+      yield(path)
+    }
+  end
+
+  def wrap_source path, content, args = {}
+    path.open('w'){ |f|
+      f.puts(args[:header]) if args[:header]
+      f.print(content)
+      f.puts(args[:footer]) if args[:footer]
+    }
+  end
+
 end
