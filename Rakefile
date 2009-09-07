@@ -9,6 +9,11 @@ PROJ.email = 'godfat (XD) godfat.org'
 PROJ.url = 'http://github.com/godfat/source-tools'
 PROJ.rubyforge.name = 'ludy'
 
+# begin workaround
+# PROJ.include << 'lib/.+'
+PROJ.gem.files = manifest + 'lib/source-tools/templates/t.git/hooks/post-receive'
+# end   workaround
+
 # PROJ.gem.dependencies << ['source-tools', '>=0.5.0']
 # PROJ.gem.development_dependencies << ['minitest', '>=1.3.0']
 PROJ.gem.executables = ["bin/#{PROJ.name}"]
