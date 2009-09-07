@@ -29,6 +29,7 @@ module SourceTools
     end
 
     FileUtils.mkdir_p(File.dirname(path))
+    content = ''
     File.open(path, 'w'){ |file|
       require 'erb'
       args = task_args.to_hash
@@ -37,8 +38,13 @@ module SourceTools
       directory = "#{File.dirname(__FILE__)}/source-tools/templates/"
       template  = "t#{path}.erb"
 
-      file << ERB.new(File.read(directory + template)).result(binding)
+      content = File.read(directory + template)
+      file << ERB.new(content).result(binding)
     }
+    if content =~ /\A#!/
+      puts "chmod #{path} to 755"
+      File.chmod(0755, path)
+    end
 
     puts "#{path} generated."
   end
