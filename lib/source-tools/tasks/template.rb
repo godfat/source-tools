@@ -18,7 +18,7 @@ namespace :st do
     SourceTools.task_template('config/nginx.conf', :project)
 
     %w[ .gitignore .vimrc .bashrc .config/fish/config.fish
-        config/mime.types
+        config/mime.types .git/hooks/post-receive
       ].each{ |path|
 
       desc "create a common #{File.basename(path)} file"
