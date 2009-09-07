@@ -11,7 +11,7 @@ PROJ.rubyforge.name = 'ludy'
 
 # begin workaround
 # PROJ.include << 'lib/.+'
-PROJ.gem.files = manifest + 'lib/source-tools/templates/t.git/hooks/post-receive'
+PROJ.gem.files = manifest << 'lib/source-tools/templates/t.git/hooks/post-receive.erb'
 # end   workaround
 
 # PROJ.gem.dependencies << ['source-tools', '>=0.5.0']
