@@ -29,7 +29,7 @@ http {
 
     access_log  /home/<%= args[:project] %>/log/nginx_access.log main;
 
-    # fastcgi_temp_path      /home/<%= args[:project] %>/tmp/fcgi_temp;
+    fastcgi_temp_path      /home/<%= args[:project] %>/tmp/fcgi_temp;
     client_body_temp_path  /home/<%= args[:project] %>/tmp/client_body 1 2;
     proxy_temp_path        /home/<%= args[:project] %>/tmp/proxy_temp;
 
