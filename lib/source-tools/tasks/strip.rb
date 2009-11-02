@@ -11,7 +11,7 @@ namespace :st do
 
     SourceTools.each_source_path{ |path|
       # strat striping unnecessary whitespaces
-      result = path.open('r'){ |f| SourceTools.strip(f, spaces) }
+      result = path.open('r:binary'){ |f| SourceTools.strip(f, spaces) }
 
       # skip the file if it was not modified
       next if Zlib.crc32(result) == Zlib.crc32(path.read)
