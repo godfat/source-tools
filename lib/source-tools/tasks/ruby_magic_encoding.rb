@@ -5,8 +5,9 @@ namespace :st do
     encoding = args[:encoding] || 'utf-8'
 
     SourceTools.glob(args[:glob]){ |path|
+      header = path.readlines.first
+      next if header =~ /\A# ?encoding:/
       content = path.read
-      next if content =~ /\A# ?encoding:/
 
       puts "Processing #{path}"
       SourceTools.wrap_source( path, content,
