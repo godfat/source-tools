@@ -33,7 +33,7 @@ source-tools st:t:nginx.conf[project]  # create an nginx config file
 
 == INSTALL:
 
-* sudo gem install source-tools
+* gem install source-tools
 
 == LICENSE:
 
