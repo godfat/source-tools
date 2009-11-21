@@ -2,17 +2,17 @@
 
 Gem::Specification.new do |s|
   s.name = %q{source-tools}
-  s.version = "0.5.0"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Lin Jen-Shin (a.k.a. godfat \347\234\237\345\270\270)"]
-  s.date = %q{2009-09-07}
+  s.authors = ["Lin Jen-Shin (a.k.a. godfat 真常)"]
+  s.date = %q{2009-11-22}
   s.default_executable = %q{source-tools}
   s.description = %q{ source code tools collection}
   s.email = %q{godfat (XD) godfat.org}
   s.executables = ["source-tools"]
-  s.extra_rdoc_files = [".gitignore", "CHANGES", "README", "TODO", "bin/source-tools", "lib/source-tools/templates/t.bashrc.erb", "lib/source-tools/templates/t.config/fish/config.fish.erb", "lib/source-tools/templates/t.gemrc.erb", "lib/source-tools/templates/t.gitconfig.erb", "lib/source-tools/templates/t.gitignore.erb", "lib/source-tools/templates/t.vimrc.erb", "lib/source-tools/templates/tconfig/mime.types.erb", "lib/source-tools/templates/tconfig/nginx.conf.erb", "source-tools.gemspec", "lib/source-tools/templates/t.git/hooks/post-receive.erb"]
-  s.files = [".gitignore", "CHANGES", "README", "Rakefile", "TODO", "bin/source-tools", "lib/source-tools.rb", "lib/source-tools/bin.rb", "lib/source-tools/default.rb", "lib/source-tools/tasks.rb", "lib/source-tools/tasks/chmod.rb", "lib/source-tools/tasks/html_wrap.rb", "lib/source-tools/tasks/ruby_magic_encoding.rb", "lib/source-tools/tasks/strip.rb", "lib/source-tools/tasks/template.rb", "lib/source-tools/templates/t.bashrc.erb", "lib/source-tools/templates/t.config/fish/config.fish.erb", "lib/source-tools/templates/t.gemrc.erb", "lib/source-tools/templates/t.gitconfig.erb", "lib/source-tools/templates/t.gitignore.erb", "lib/source-tools/templates/t.vimrc.erb", "lib/source-tools/templates/tRakefile.erb", "lib/source-tools/templates/tconfig/mime.types.erb", "lib/source-tools/templates/tconfig/nginx.conf.erb", "lib/source-tools/version.rb", "source-tools.gemspec", "lib/source-tools/templates/t.git/hooks/post-receive.erb"]
+  s.extra_rdoc_files = [".gitignore", "CHANGES", "README", "TODO", "bin/source-tools", "lib/source-tools/templates/t.bashrc.erb", "lib/source-tools/templates/t.config/fish/config.fish.erb", "lib/source-tools/templates/t.gemrc.erb", "lib/source-tools/templates/t.gitconfig.erb", "lib/source-tools/templates/t.gitignore.erb", "lib/source-tools/templates/t.profile.erb", "lib/source-tools/templates/t.screenrc.erb", "lib/source-tools/templates/t.vimrc.erb", "lib/source-tools/templates/tconfig/mime.types.erb", "lib/source-tools/templates/tconfig/nginx.conf.erb", "source-tools.gemspec", "lib/source-tools/templates/t.git/hooks/post-receive.erb"]
+  s.files = [".gitignore", "CHANGES", "README", "Rakefile", "TODO", "bin/source-tools", "lib/source-tools.rb", "lib/source-tools/bin.rb", "lib/source-tools/default.rb", "lib/source-tools/tasks.rb", "lib/source-tools/tasks/chmod.rb", "lib/source-tools/tasks/html_wrap.rb", "lib/source-tools/tasks/ruby_magic_encoding.rb", "lib/source-tools/tasks/strip.rb", "lib/source-tools/tasks/template.rb", "lib/source-tools/templates/t.bashrc.erb", "lib/source-tools/templates/t.config/fish/config.fish.erb", "lib/source-tools/templates/t.gemrc.erb", "lib/source-tools/templates/t.gitconfig.erb", "lib/source-tools/templates/t.gitignore.erb", "lib/source-tools/templates/t.profile.erb", "lib/source-tools/templates/t.screenrc.erb", "lib/source-tools/templates/t.vimrc.erb", "lib/source-tools/templates/tRakefile.erb", "lib/source-tools/templates/tconfig/mime.types.erb", "lib/source-tools/templates/tconfig/nginx.conf.erb", "lib/source-tools/version.rb", "source-tools.gemspec", "lib/source-tools/templates/t.git/hooks/post-receive.erb"]
   s.homepage = %q{http://github.com/godfat/source-tools}
   s.rdoc_options = ["--charset=utf-8", "--inline-source", "--line-numbers", "--promiscuous", "--main", "README"]
   s.require_paths = ["lib"]
