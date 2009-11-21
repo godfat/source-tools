@@ -6,7 +6,7 @@ require 'bones'
 Bones.setup
 
 PROJ.name = 'source-tools'
-PROJ.authors = 'Lin Jen-Shin (a.k.a. godfat 真常)'
+PROJ.authors = 'Lin Jen-Shin (aka godfat 真常)'
 PROJ.email = 'godfat (XD) godfat.org'
 PROJ.url = 'http://github.com/godfat/source-tools'
 PROJ.rubyforge.name = 'ludy'
