@@ -17,7 +17,6 @@ Bones{
   authors 'Lin Jen-Shin (aka godfat 真常)'
   email   'godfat (XD) godfat.org'
 
-  rubyforge.name 'ludy'
   history_file   'CHANGES'
    readme_file   'README'
    ignore_file   '.gitignore'
