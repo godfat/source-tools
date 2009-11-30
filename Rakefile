@@ -7,13 +7,16 @@ rescue LoadError
 end
 
 ensure_in_path 'lib'
-require 'source-tools/version'
+proj = 'source-tools'
 
 Bones{
-  name    'source-tools'
-  url     'http://github.com/godfat/source-tools'
+  require "#{proj}/version"
   version SourceTools::VERSION
 
+  # ruby_opts [''] # silence warning, too many in addressable and/or dm-core
+
+  name    proj
+  url     "http://github.com/godfat/#{proj}"
   authors 'Lin Jen-Shin (aka godfat 真常)'
   email   'godfat (XD) godfat.org'
 
