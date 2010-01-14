@@ -8,9 +8,9 @@ end
 
 ensure_in_path 'lib'
 proj = 'source-tools'
+require "#{proj}/version"
 
 Bones{
-  require "#{proj}/version"
   version SourceTools::VERSION
 
   # ruby_opts [''] # silence warning, too many in addressable and/or dm-core
