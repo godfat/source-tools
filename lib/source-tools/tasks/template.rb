@@ -19,6 +19,7 @@ namespace :st do
 
     %w[ .gitignore .vimrc .bashrc .config/fish/config.fish
         config/mime.types .git/hooks/post-receive .screenrc
+        nginx-for-unicorn.conf
       ].each{ |path|
 
       desc "create a common #{File.basename(path)} file"
