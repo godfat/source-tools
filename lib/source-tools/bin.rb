@@ -1,5 +1,7 @@
 
 require 'rake'
+include Rake::DSL
+
 require 'source-tools/tasks'
 require 'source-tools/default'
 
