@@ -10,5 +10,5 @@ Gemgem.init(dir) do |s|
   require 'source-tools/version'
   s.name    = 'source-tools'
   s.version = SourceTools::VERSION
-  %w[rake].each{ |g| s.add_runtime_dependency(g) }
+  s.add_runtime_dependency('rake', '>= 10')
 end
