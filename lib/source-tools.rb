@@ -50,7 +50,7 @@ module SourceTools
   end
 
   def task_template path, *args, &block
-    task(*args.dup.unshift(File.basename(path))) do |t, task_args|
+    task(*[File.basename(path)] + args) do |t, task_args|
       SourceTools.generate(path, args, task_args, &block)
     end
   end
