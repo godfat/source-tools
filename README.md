@@ -14,19 +14,19 @@ by Lin Jen-Shin ([godfat](http://godfat.org))
 
 ## FEATURES:
 
-$ source-tools
-source-tools st:chmod                  # fix files(644) and directories(755) permission recursively.
-source-tools st:html_wrap[glob]        # Wrap html with comments at the beginning and the end of file (for tracking partial template on generated html)
-source-tools st:strip[spaces]          # Strip trailing whitespace from source files, also normalize tabs to spaces, and an newline at end of file
-source-tools st:t:.bashrc              # create a common .bashrc file
-source-tools st:t:.gemrc[project]      # create a user gem only .gemrc file
-source-tools st:t:.gitconfig[project]  # create a common .gitconfig file
-source-tools st:t:.gitignore           # create a common .gitignore file
-source-tools st:t:.vimrc               # create a common .vimrc file
-source-tools st:t:Rakefile[project]    # create a Rakefile template for bones.
-source-tools st:t:config.fish          # create a common config.fish file
-source-tools st:t:mime.types           # create a common mime.types file
-source-tools st:t:nginx.conf[project]  # create an nginx config file
+    $ source-tools
+    source-tools st:chmod                  # fix files(644) and directories(755) permission recursively.
+    source-tools st:html_wrap[glob]        # Wrap html with comments at the beginning and the end of file (for tracking partial template on generated html)
+    source-tools st:strip[spaces]          # Strip trailing whitespace from source files, also normalize tabs to spaces, and an newline at end of file
+    source-tools st:t:.bashrc              # create a common .bashrc file
+    source-tools st:t:.gemrc[project]      # create a user gem only .gemrc file
+    source-tools st:t:.gitconfig[project]  # create a common .gitconfig file
+    source-tools st:t:.gitignore           # create a common .gitignore file
+    source-tools st:t:.vimrc               # create a common .vimrc file
+    source-tools st:t:Rakefile[project]    # create a Rakefile template for bones.
+    source-tools st:t:config.fish          # create a common config.fish file
+    source-tools st:t:mime.types           # create a common mime.types file
+    source-tools st:t:nginx.conf[project]  # create an nginx config file
 
 ## SYNOPSIS:
 
