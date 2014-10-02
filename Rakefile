@@ -1,34 +1,14 @@
-# encoding: utf-8
 
 begin
-  require 'bones'
+  require "#{dir = File.dirname(__FILE__)}/task/gemgem"
 rescue LoadError
-  abort '### Please install the "bones" gem ###'
+  sh 'git submodule update --init'
+  exec Gem.ruby, '-S', $PROGRAM_NAME, *ARGV
 end
 
-ensure_in_path 'lib'
-proj = 'source-tools'
-require "#{proj}/version"
-
-Bones{
-  version SourceTools::VERSION
-
-  # ruby_opts [''] # silence warning, too many in addressable and/or dm-core
-
-  name    proj
-  url     "http://github.com/godfat/#{proj}"
-  authors 'Lin Jen-Shin (aka godfat 真常)'
-  email   'godfat (XD) godfat.org'
-
-  history_file   'CHANGES'
-   readme_file   'README'
-   ignore_file   '.gitignore'
-  rdoc.include   ['\w+']
-}
-
-CLEAN.include Dir['**/*.rbc']
-
-task :default do
-  Rake.application.options.show_task_pattern = /./
-  Rake.application.display_tasks_and_comments
+Gemgem.init(dir) do |s|
+  require 'source-tools/version'
+  s.name    = 'source-tools'
+  s.version = SourceTools::VERSION
+  %w[rake].each{ |g| s.add_runtime_dependency(g) }
 end

@@ -1,17 +1,18 @@
-= source-tools 0.6
-by Lin Jen-Shin (godfat[http://godfat.org])
-  godfat (XD) godfat.org
+# source-tools 0.6
 
-== LINKS:
+by Lin Jen-Shin ([godfat](http://godfat.org))
 
-* github-project[https://github.com/godfat/source-tools]
-* rubyforge-project[http://rubyforge.org/projects/ludy]
+## LINKS:
 
-== DESCRIPTION:
+* [github](https://github.com/godfat/source-tools)
+* [rubygems](https://rubygems.org/gems/source-tools)
+* [rdoc](http://rdoc.info/github/godfat/source-tools)
+
+## DESCRIPTION:
 
  source code tools collection
 
-== FEATURES:
+## FEATURES:
 
 $ source-tools
 source-tools st:chmod                  # fix files(644) and directories(755) permission recursively.
@@ -27,19 +28,19 @@ source-tools st:t:config.fish          # create a common config.fish file
 source-tools st:t:mime.types           # create a common mime.types file
 source-tools st:t:nginx.conf[project]  # create an nginx config file
 
-== SYNOPSIS:
+## SYNOPSIS:
 
-== REQUIREMENTS:
+## REQUIREMENTS:
 
-== INSTALL:
+## INSTALL:
 
 * gem install source-tools
 
-== LICENSE:
+## LICENSE:
 
 Apache License 2.0
 
-Copyright (c) 2008-2009, Lin Jen-Shin (aka godfat 真常)
+Copyright (c) 2008-2009, Lin Jen-Shin (godfat)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
