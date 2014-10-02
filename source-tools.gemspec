@@ -42,7 +42,9 @@ Gem::Specification.new do |s|
   "lib/source-tools/templates/tconfig/nginx.conf.erb",
   "lib/source-tools/templates/tnginx-for-unicorn.conf.erb",
   "lib/source-tools/version.rb",
-  "source-tools.gemspec"]
+  "source-tools.gemspec",
+  "task/README.md",
+  "task/gemgem.rb"]
   s.homepage = "https://github.com/godfat/source-tools"
   s.licenses = ["Apache License 2.0"]
   s.rubygems_version = "2.4.2"
